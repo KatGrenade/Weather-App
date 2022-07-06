@@ -1,0 +1,88 @@
+body {
+  font-family: "Signika Negative", sans-serif;
+}
+.application-body {
+  width: 60%;
+  padding: 30px;
+  margin: 30px auto;
+  background-color: #ffdee9;
+  background-image: linear-gradient(
+    0deg,
+    #ffdee9 3%,
+    #b9fffdc0 55%,
+    #ffffff 98%
+  );
+
+  box-shadow: rgba(177, 161, 173, 0.493) 0px 8px 8px 0;
+  border-radius: 10px;
+}
+.form-inline {
+  display: flex;
+  margin-left: 30px;
+  margin-bottom: 5px;
+}
+p {
+  color: #384047;
+  margin-left: 40px;
+  font-family: "Signika Negative", sans-serif;
+}
+.display-box {
+  display: flex;
+  justify-content: space-evenly;
+}
+.current-city-display {
+  margin-left: 12px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.city-name {
+  color: #384047;
+  font-family: "Signika Negative", sans-serif;
+}
+.weather-display {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.current-temperature {
+  color: #384047;
+  font-family: "Signika Negative", sans-serif;
+  display: inline;
+}
+.units {
+  color: #384047;
+  font-size: 32px;
+  font-family: "Signika Negative", sans-serif;
+  position: relative;
+  top: -7px;
+  padding-left: 3px;
+}
+#celsius-link,
+#fahrenheit-link {
+  text-decoration-thickness: from-font;
+  color: #384047;
+}
+
+.iconbig {
+  width: 150px;
+  margin-left: 10px;
+}
+.icon {
+  width: 100px;
+  display: block;
+  margin: 0 auto;
+}
+
+.weekdays {
+  color: #384047;
+  font-family: "Signika Negative", sans-serif;
+  text-align: center;
+}
+
+.temperature {
+  color: #384047;
+  font-family: "Signika Negative", sans-serif;
+  text-align: center;
+  margin: 10px auto;
+}
