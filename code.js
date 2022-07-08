@@ -18,6 +18,30 @@ function displayTime() {
 let showTime = document.querySelector(`#date`);
 showTime.innerHTML = displayTime(currentTime);
 
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  return `${day}, ${hours}:${minutes}`;
+}
+
 function displayWeather(response) {
   document.querySelector(".city-name").innerHTML = response.data.name;
   document.querySelector("#description").innerHTML =
@@ -29,6 +53,13 @@ function displayWeather(response) {
     response.data.wind.speed
   );
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+  document.querySelector("#date").innerHTML = formatDate(
+    response.data.dt * 1000
+  );
+  let iconElement = document.querySelector(`.iconbig`);
+  iconElement.setAttribute("src", `media/${response.data.weather[0].icon}.svg`);
+
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 function displayCityInput(event) {
@@ -76,6 +107,9 @@ function locationWeather(response) {
     response.data.wind.speed
   );
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+  document.querySelector("#date").innerHTML = formatDate(
+    response.data.dt * 1000
+  );
 }
 function coordinates(position) {
   console.log(position.coords.latitude);
