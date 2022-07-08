@@ -20,10 +20,15 @@ showTime.innerHTML = displayTime(currentTime);
 
 function displayWeather(response) {
   document.querySelector(".city-name").innerHTML = response.data.name;
-
+  document.querySelector("#description").innerHTML =
+    response.data.weather[0].description;
   document.querySelector("#temperature").innerHTML = Math.round(
     response.data.main.temp
   );
+  document.querySelector("#wind").innerHTML = Math.round(
+    response.data.wind.speed
+  );
+  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
 }
 
 function displayCityInput(event) {
@@ -65,6 +70,12 @@ function locationWeather(response) {
   let locationTemperature = document.querySelector(`#temperature`);
   let newTemperature = Math.round(response.data.main.temp);
   locationTemperature.innerHTML = `${newTemperature}`;
+  document.querySelector("#description").innerHTML =
+    response.data.weather[0].description;
+  document.querySelector("#wind").innerHTML = Math.round(
+    response.data.wind.speed
+  );
+  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
 }
 function coordinates(position) {
   console.log(position.coords.latitude);

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300&display=swap" rel="stylesheet">
@@ -15,11 +15,14 @@
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
     />
+<link rel="stylesheet" href="style.css" />
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     
     <title>Weather</title>
   </head>
   <body>
+    <div class="application-body-wrapper">
     <div class="application-body">
     <header>
       <form id="city-search-form">
@@ -47,11 +50,18 @@
     
     <div class="display-box">
       <div class="current-city-display">
+        <br>
       <h1 class="city-name">Tokyo</h1>
+      <ul>
+        
+        <li id="description">clear sky</li>
+         <li>Wind: <span id="wind"></span> km/h</li>
+        <li> Humidity: <span id="humidity"></span>%</li>
+      </ul>
     </div>
     <div class="weather-display">
-      <h1 class="current-temperature" id="temperature">19 </h1>
-      <span class="units"><a href="#" id="celsius-link"> °C</a> | <a href="#" id="fahrenheit-link">°F</a></span>
+      <h1 class="current-temperature" id="temperature">19</h1><h1 class="current-temperature">°</h1>
+      <span class="units"><a href="#" id="celsius-link"> C</a> | <a href="#" id="fahrenheit-link">F</a></span>
       
       <img class="iconbig" src="media/cloudysun.svg" alt="sunnyandcloudy" />
     </div>
@@ -88,12 +98,12 @@
       </div>
      
     </div>
-    <br>
-    <a class="githublink" href="https://github.com/KatGrenade/weather_app_SheCodes">Open-source code</a> by Ola
+    
 
   
     </div>
-    
+    <small><a class="githublink" href="https://github.com/KatGrenade/weather_app_SheCodes">Open-source code</a> by Ola</small>
+    </div>
     </div>
     <script src="code.js"></script>
   </body>
