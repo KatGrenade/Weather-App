@@ -95,7 +95,6 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", convertToCelsius);
 
 function locationWeather(response) {
-  console.log(response);
   let h1 = document.querySelector(`.city-name`);
   h1.innerHTML = `${response.data.name}`;
   let locationTemperature = document.querySelector(`#temperature`);
@@ -110,7 +109,12 @@ function locationWeather(response) {
   document.querySelector("#date").innerHTML = formatDate(
     response.data.dt * 1000
   );
+  let iconElement = document.querySelector(`.iconbig`);
+  iconElement.setAttribute("src", `media/${response.data.weather[0].icon}.svg`);
+
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
+
 function coordinates(position) {
   console.log(position.coords.latitude);
   console.log(position.coords.longitude);

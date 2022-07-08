@@ -89,6 +89,7 @@ li:first-letter {
   width: 100px;
   display: block;
   margin: 0 auto;
+  height: 100px;
 }
 
 .weekdays {
