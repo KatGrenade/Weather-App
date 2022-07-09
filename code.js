@@ -46,9 +46,9 @@ function displayWeather(response) {
   document.querySelector(".city-name").innerHTML = response.data.name;
   document.querySelector("#description").innerHTML =
     response.data.weather[0].description;
-  document.querySelector("#temperature").innerHTML = Math.round(
-    response.data.main.temp
-  );
+  celsiusTemperature = response.data.main.temp;
+  document.querySelector("#temperature").innerHTML =
+    Math.round(celsiusTemperature);
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
   );
@@ -77,23 +77,6 @@ function displayCityInput(event) {
 let citySearchForm = document.querySelector(`#city-search-form`);
 citySearchForm.addEventListener(`submit`, displayCityInput);
 
-function convertToFahrenheit(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = 66;
-}
-
-function convertToCelsius(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = 19;
-}
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", convertToFahrenheit);
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", convertToCelsius);
-
 function locationWeather(response) {
   let h1 = document.querySelector(`.city-name`);
   h1.innerHTML = `${response.data.name}`;
@@ -114,6 +97,29 @@ function locationWeather(response) {
 
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
+
+function convertToFahrenheit(event) {
+  event.preventDefault();
+  celsiusLink.classList.remove(`active`);
+  fahrenheitLink.classList.add(`active`);
+  let temperatureElement = document.querySelector("#temperature");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function convertToCelsius(event) {
+  event.preventDefault();
+  celsiusLink.classList.add(`active`);
+  fahrenheitLink.classList.remove(`active`);
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", convertToFahrenheit);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", convertToCelsius);
+let celsiusTemperature = null;
 
 function coordinates(position) {
   console.log(position.coords.latitude);

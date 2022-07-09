@@ -60,7 +60,7 @@ li:first-letter {
 .weather-display {
   display: flex;
   justify-content: flex-end;
-  align-items: flex-end;
+  align-items: center;
 }
 .current-temperature {
   color: #384047;
@@ -75,12 +75,14 @@ li:first-letter {
   top: -7px;
   padding-left: 3px;
 }
-#celsius-link,
-#fahrenheit-link {
-  text-decoration-thickness: from-font;
+.weather-display .active {
+  cursor: default;
   color: #384047;
 }
-
+#celsius-link,
+#fahrenheit-link {
+  text-decoration: none;
+}
 .iconbig {
   width: 150px;
   margin-left: 10px;
