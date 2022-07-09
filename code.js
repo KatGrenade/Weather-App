@@ -81,7 +81,8 @@ function locationWeather(response) {
   let h1 = document.querySelector(`.city-name`);
   h1.innerHTML = `${response.data.name}`;
   let locationTemperature = document.querySelector(`#temperature`);
-  let newTemperature = Math.round(response.data.main.temp);
+  celsiusTemperature = response.data.main.temp;
+  let newTemperature = Math.round(celsiusTemperature);
   locationTemperature.innerHTML = `${newTemperature}`;
   document.querySelector("#description").innerHTML =
     response.data.weather[0].description;
