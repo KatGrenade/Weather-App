@@ -41,6 +41,49 @@ function formatDate(timestamp) {
   let day = days[date.getDay()];
   return `${day}, ${hours}:${minutes}`;
 }
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+function displayForecast(response) {
+  console.log(response.data);
+  let forecast = response.data.daily;
+
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
+      <div class="col-sm ">
+      <h3 class="weekdays">${formatDay(forecastDay.dt)}</h3>
+        
+        <img class="icon" 
+          src="media/${forecastDay.weather[0].icon}.svg"
+          alt="${forecastDay.weather[0].description}"
+        />
+        <h3 class="temperature">${Math.round(forecastDay.temp.day)} °C</h3>
+        
+        
+      </div>
+  `;
+    }
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  let apiKey = "0f380eeef06d6360d28eb090a2663364";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
 
 function displayWeather(response) {
   document.querySelector(".city-name").innerHTML = response.data.name;
@@ -60,18 +103,22 @@ function displayWeather(response) {
   iconElement.setAttribute("src", `media/${response.data.weather[0].icon}.svg`);
 
   iconElement.setAttribute("alt", response.data.weather[0].description);
+  getForecast(response.data.coord);
 }
-
+function search(city) {
+  let apiKey = "0f380eeef06d6360d28eb090a2663364";
+  let units = "metric";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayWeather);
+}
 function displayCityInput(event) {
   event.preventDefault();
   //let cityNameInput = document.querySelector(`#city-input`);
   //let cityName = document.querySelector(`.city-name`);
   //cityName.innerHTML = `${cityNameInput.value}`;
-  let apiKey = "0f380eeef06d6360d28eb090a2663364";
-  let citySearchResult = document.querySelector(`#city-input`).value;
-  let units = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearchResult}&appid=${apiKey}&units=${units}`;
-  axios.get(apiUrl).then(displayWeather);
+
+  let citySearchResult = document.querySelector(`#city-input`);
+  search(citySearchResult.value);
 }
 
 let citySearchForm = document.querySelector(`#city-search-form`);
@@ -97,6 +144,7 @@ function locationWeather(response) {
   iconElement.setAttribute("src", `media/${response.data.weather[0].icon}.svg`);
 
   iconElement.setAttribute("alt", response.data.weather[0].description);
+  getForecast(response.data.coord);
 }
 
 function convertToFahrenheit(event) {
@@ -136,3 +184,4 @@ function getCurrentLocation() {
 }
 let myLocationButton = document.querySelector(`#my-location`);
 myLocationButton.addEventListener(`click`, getCurrentLocation);
+search(`Kiev`);

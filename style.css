@@ -72,7 +72,7 @@ li:first-letter {
   font-size: 30px;
   font-family: "Signika Negative", sans-serif;
   position: relative;
-  top: -7px;
+  top: -6px;
   padding-left: 3px;
 }
 .weather-display .active {
